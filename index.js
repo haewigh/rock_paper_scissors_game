@@ -40,7 +40,7 @@ function playRound(humanchoice, computerchoice){
         computerScore++;
     }
     else{
-        console.log('YOU WON')(`YOU WON, ${humanchoice} wrap ${computerchoice}`)
+        console.log(`YOU WON, ${humanchoice} wrap ${computerchoice}`)
         humanScore++;
     }
 }
