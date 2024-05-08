@@ -1,21 +1,26 @@
 let humanScore = 0;
 let computerScore = 0;
+let count = 0;
 
-//COMPUTER CHOICE
-function getComputerChoice(){
-    let options = ['scissors', 'rock', 'paper'];
-    const computerchoice = options[Math.floor(Math.random()*3)];
-    return computerchoice;
-}
+const buttons = document.querySelectorAll('button');
 
 // HUMAN CHOICE
-function getHumanChoice(){
-    const humanchoice = (prompt('ROCK, PAPER OR SCISSORS:')).toLowerCase();
-    return humanchoice;
+function handleClick(event){
+    const humanchoice = event.target.id;
+    playRound(humanchoice);
+    count++
+    if (count == 5){
+        playGame()
+    }
 }
 
+buttons.forEach(button=> {
+    button.addEventListener('click', handleClick);
+});
 
-function playRound(humanchoice, computerchoice){
+function playRound(humanchoice){
+    let options = ['scissors', 'rock', 'paper'];
+    const computerchoice = options[Math.floor(Math.random()*3)];
     if (humanchoice == computerchoice) {
         console.log(`DRAW, YOU BOTH SHOWED ${computerchoice}`)
     }
@@ -45,13 +50,7 @@ function playRound(humanchoice, computerchoice){
     }
 }
 
-
 function playGame(){
-    for (let i = 0; i < 5; i++){
-        computerchoice = getComputerChoice();
-        humanchoice = getHumanChoice();
-        playRound(humanchoice, computerchoice);
-    }
     if (computerScore == humanScore){
         console.log(`WOW! ${computerScore} -- ${humanScore} DRAW`)
     }
@@ -61,6 +60,5 @@ function playGame(){
     else{
         console.log(`YOU WON, CONGRATS! ${humanScore} -- ${computerScore}`)
     }
-}
 
-playGame()
+}
